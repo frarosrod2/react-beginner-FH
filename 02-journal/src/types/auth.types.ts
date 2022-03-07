@@ -1,6 +1,6 @@
 export enum AuthType {
-  LOGIN = '[Auth] Login',
-  LOGOUT = '[Auth] Logout',
+  LOGIN = 'LOGIN',
+  LOGOUT = 'LOGOUT',
 }
 
 export interface AuthAction {

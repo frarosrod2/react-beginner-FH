@@ -3,11 +3,16 @@
   border: none;
   color: white;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
   padding: 7px 10px;
+  transition: color 0.3s ease;
 
   &:focus {
     outline: none;
+  }
+
+  &:hover {
+    color: darken($color: white, $amount: 10);
   }
 }
 
@@ -16,9 +21,9 @@
   border-radius: 2px;
 
   &:disabled {
-    background-color: lighten($color: $primary, $amount: 10);
+    background-color: lighten($color: $primary, $amount: 20);
   }
-  &:hover {
+  &:hover:not([disabled]) {
     background-color: darken($color: $primary, $amount: 20);
   }
 }
