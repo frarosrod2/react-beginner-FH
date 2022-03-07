@@ -1,4 +1,4 @@
-import { UiState } from '../interfaces/uiState.interface';
+import { UiState } from '../interfaces/ui.interface';
 import { UiType } from '../types/ui.types';
 
 const initialState: UiState = {

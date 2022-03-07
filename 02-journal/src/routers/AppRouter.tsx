@@ -8,6 +8,7 @@ import { login } from '../actions/auth.actions';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { AuthRouter } from './AuthRouter';
+import { startLoadingNotes } from '../actions/notes.actions';
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
@@ -16,10 +17,11 @@ export const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user: any) => {
+    onAuthStateChanged(auth, async (user: any) => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
         setIsLoggedIn(true);
+        dispatch(startLoadingNotes(user.uid));
       } else {
         setIsLoggedIn(false);
       }
