@@ -1,15 +1,13 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { PrivatePage } from '../pages/PrivatePage';
+import { CalendarPage } from '../pages/CalendarPage';
 
 export const DashboardRouter = () => {
   return (
     <>
-      <div className="container">
-        <Routes>
-          <Route path="/private" element={<PrivatePage />} />
-          <Route path="*" element={<Navigate to="/private" />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/calendar" element={<CalendarPage />} />
+        <Route path="*" element={<Navigate to="/calendar" />} />
+      </Routes>
     </>
   );
 };
