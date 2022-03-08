@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebase-config';
 import { NotesType } from '../types/notes.types';
 import { loadNotes } from '../helpers/loadNotes';
@@ -15,18 +15,11 @@ export const startNewNote = () => {
       date: new Date().getTime(),
     };
 
-    const doc = await addDoc(collection(db, `${uid}/journal/notes`), newNote);
-    dispatch(activeNote(doc.id, newNote));
+    const docum = await addDoc(collection(db, `${uid}/journal/notes`), newNote);
+    dispatch(activeNote(docum.id, newNote));
+    dispatch(addNewNote(docum.id, newNote));
   };
 };
-
-export const activeNote = (id: string | number, note: any) => ({
-  type: NotesType.ACTIVE,
-  payload: {
-    id,
-    ...note,
-  },
-});
 
 export const startLoadingNotes = (uid: string | number) => {
   return async (dispatch: any) => {
@@ -73,6 +66,32 @@ export const startUploading = (file: any) => {
   };
 };
 
+export const startDeleting = (id: string | number) => {
+  return async (dispatch: any, getState: any) => {
+    const uid = getState().auth.uid;
+    const docum = doc(db, `${uid}/journal/notes/${id}`);
+    await deleteDoc(docum);
+
+    dispatch(deleteNote(id));
+  };
+};
+
+export const activeNote = (id: string | number, note: any) => ({
+  type: NotesType.ACTIVE,
+  payload: {
+    id,
+    ...note,
+  },
+});
+
+export const addNewNote = (id: string | number, note: any) => ({
+  type: NotesType.ADD,
+  payload: {
+    id,
+    ...note,
+  },
+});
+
 export const refreshNote = (id: string | number, note: any) => ({
   type: NotesType.UPDATE,
   payload: { id, note: { id, ...note } },
@@ -81,4 +100,13 @@ export const refreshNote = (id: string | number, note: any) => ({
 export const setNotes = (notes: any) => ({
   type: NotesType.LOAD,
   payload: notes,
+});
+
+export const deleteNote = (id: string | number) => ({
+  type: NotesType.DELETE,
+  payload: id,
+});
+
+export const notesLogout = () => ({
+  type: NotesType.LOGOUT_CLEANING,
 });

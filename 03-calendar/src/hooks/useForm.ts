@@ -5,13 +5,14 @@ import { useState } from 'react';
  * @param {*} initialStateForm
  * @returns [formValues, handleInputChange, setFormValues, reset] !! Array
  */
+
 export const useForm = (initialStateForm = {}) => {
-  const [formValues, setFormValues] = useState({...initialStateForm});
-  const reset = (newFormState = initialStateForm) => {
-    setFormValues(newFormState);
+  const [formValues, setFormValues] = useState(initialStateForm);
+
+  const reset = () => {
+    setFormValues(initialStateForm);
   };
-  
-  
+
   const handleInputChange = ({ target }: any) => {
     const { name, type, value, checked } = target;
 
@@ -21,5 +22,5 @@ export const useForm = (initialStateForm = {}) => {
     });
   };
 
-  return [formValues, handleInputChange, reset];
+  return [formValues, handleInputChange, setFormValues, reset];
 };

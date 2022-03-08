@@ -2,17 +2,15 @@ import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from '../../hooks/useform';
 import { NotesAppBar } from './NotesAppBar';
-import { activeNote } from '../../actions/notes.actions';
+import { activeNote, startDeleting } from '../../actions/notes.actions';
 
 export const NotesScreen = () => {
   const dispatch = useDispatch();
   const { active: note } = useSelector((state: any) => state.notes);
-  console.log('note', note);
   const [formValues, handleInputChange, reset]: any = useForm(note);
   const { id, body, title, url } = formValues;
-  console.log('url', url);
 
-  const activeId = useRef(note.id);
+  const activeId = useRef(note.url);
 
   useEffect(() => {
     if (note.id !== activeId.current) {
@@ -22,13 +20,16 @@ export const NotesScreen = () => {
   }, [note, reset]);
 
   useEffect(() => {
-    console.log('formValues', formValues);
     dispatch(activeNote(id, { ...formValues }));
   }, [formValues, dispatch]);
 
+  const handleDelete = () => {
+    dispatch(startDeleting(id));
+  };
+
   return (
     <div className="notes__main-content">
-      <NotesAppBar />
+      <NotesAppBar reset={reset} />
       <div className="notes__content">
         <input
           type="text"
@@ -51,6 +52,9 @@ export const NotesScreen = () => {
           </div>
         )}
       </div>
+      <button className="btn btn-danger" onClick={handleDelete}>
+        Delete
+      </button>
     </div>
   );
 };

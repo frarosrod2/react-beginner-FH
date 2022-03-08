@@ -10,6 +10,7 @@ import {
 import { auth } from '../firebase/firebase-config';
 import { startLoading, finishLoading } from './ui.actions';
 import Swal from 'sweetalert2';
+import { notesLogout } from './notes.actions';
 
 export const startLoginEmailPassword = (email: string, password: string) => {
   return (dispatch: any) => {
@@ -64,6 +65,7 @@ export const startLogout = () => {
   return async (dispatch: any) => {
     await signOut(auth);
     dispatch(logout());
+    dispatch(notesLogout());
   };
 };
 

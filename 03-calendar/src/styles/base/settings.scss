@@ -1,0 +1,20 @@
+// Variables and general Settings
+@import '@carbon/type/scss/type';
+@import '@carbon/type/scss/font-face/mono';
+@import '@carbon/type/scss/font-face/sans';
+@import '@carbon/type/scss/font-face/serif';
+@import '@carbon/type/scss/font-family';
+
+@include carbon--type-reset();
+@include carbon--font-face-mono();
+@include carbon--font-face-sans();
+@include carbon--font-face-serif();
+
+// Font
+$primaryFont: carbon--font-family('sans');
+$secondaryFont: carbon--font-family('serif');
+$thirdFont: Tahoma;
+
+// Colors
+$primaryColor: #5c62c5;
+$secondaryColor: #363636;

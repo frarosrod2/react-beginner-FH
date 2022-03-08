@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startSaveNote, activeNote, startUploading } from '../../actions/notes.actions';
 
-export const NotesAppBar = () => {
+export const NotesAppBar = ({ reset }: any) => {
   const dispatch = useDispatch();
   const { active: note } = useSelector((state: any) => state.notes);
 
