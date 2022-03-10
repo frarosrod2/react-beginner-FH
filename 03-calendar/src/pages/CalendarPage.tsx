@@ -12,15 +12,16 @@ import { CalendarEvent } from '../components/calendar/CalendarEvent';
 import { CalendarModal } from '../components/calendar/CalendarModal';
 import { modalUiOpen } from '../store/actions/modalUi.actions';
 import { RootState } from '../Interfaces/rootState.interfaces';
-import { eventSet } from '../store/actions/events.actions';
+import { eventSet, eventClearActiveNote } from '../store/actions/events.actions';
 import { AddNewFab } from '../components/ui/AddNewFab';
+import { DeleteEventFab } from '../components/ui/DeleteEventFab';
 
 const localizer = momentLocalizer(moment);
 moment.locale('es');
 
 export const CalendarPage = () => {
   const dispatch = useDispatch();
-  const { events } = useSelector((state: RootState) => state.calendar);
+  const { events, activeEvent } = useSelector((state: RootState) => state.calendar);
 
   const [lastView, setLastView]: any = useState(
     localStorage.getItem('lastView') || 'month'
@@ -37,6 +38,10 @@ export const CalendarPage = () => {
   const onViewChange = (e: any) => {
     setLastView(e);
     localStorage.setItem('lastView', e);
+  };
+
+  const onSelectedSlot = (e: any) => {
+    dispatch(eventClearActiveNote());
   };
 
   const eventStyleGetter: any = (
@@ -71,9 +76,12 @@ export const CalendarPage = () => {
         onSelectEvent={onSelect}
         onView={onViewChange}
         view={lastView}
+        onSelectSlot={onSelectedSlot}
+        selectable={true}
       />
       <AddNewFab />
       <CalendarModal />
+      {activeEvent && <DeleteEventFab />}
     </div>
   );
 };

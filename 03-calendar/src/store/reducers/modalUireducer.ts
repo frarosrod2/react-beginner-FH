@@ -1,6 +1,6 @@
 import { ModalUiAction } from '../../Interfaces/actions.interfaces';
 import { ModalUi } from '../../Interfaces/modalUi.interfaces';
-import { ModalUiType } from '../../types/calendar.types';
+import { ModalUiType } from '../../types/modal.types';
 
 const initialState: ModalUi = {
   modalOpen: false,

@@ -1,4 +1,4 @@
-import { ModalUiType } from '../../types/calendar.types';
+import { ModalUiType } from '../../types/modal.types';
 
 export const modalUiOpen = () => ({
   type: ModalUiType.OPEN_MODAL,
