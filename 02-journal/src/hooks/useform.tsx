@@ -11,7 +11,6 @@ export const useForm = (initialStateForm = {}) => {
     setFormValues(newFormState);
   };
   
-  
   const handleInputChange = ({ target }: any) => {
     const { name, type, value, checked } = target;
 

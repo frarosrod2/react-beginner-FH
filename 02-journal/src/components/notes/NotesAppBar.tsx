@@ -17,6 +17,7 @@ export const NotesAppBar = ({ reset }: any) => {
     const file = e.target.files[0];
     if (file) {
       dispatch(startUploading(file));
+      reset(note);
     }
   };
 

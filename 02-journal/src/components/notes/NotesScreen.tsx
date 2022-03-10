@@ -21,7 +21,7 @@ export const NotesScreen = () => {
 
   useEffect(() => {
     dispatch(activeNote(id, { ...formValues }));
-  }, [formValues, dispatch]);
+  }, [formValues, dispatch, url]);
 
   const handleDelete = () => {
     dispatch(startDeleting(id));

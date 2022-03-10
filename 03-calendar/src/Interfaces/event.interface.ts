@@ -1,6 +1,9 @@
-export interface Event {
+export interface EventCal {
+  id: string | number;
   title: string;
   start: Date;
   end: Date;
-  bgcolor: string;
+  notes: any;
+  bgcolor?: string;
+  user?: any;
 }
