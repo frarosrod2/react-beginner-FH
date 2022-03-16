@@ -6,12 +6,12 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/es';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { EventCal } from '../Interfaces/event.interface';
+import { EventCal } from '../interfaces/event.interfaces';
 import { messages } from '../helpers/calendar-messages-es';
 import { CalendarEvent } from '../components/calendar/CalendarEvent';
 import { CalendarModal } from '../components/calendar/CalendarModal';
 import { modalUiOpen } from '../store/actions/modalUi.actions';
-import { RootState } from '../Interfaces/rootState.interfaces';
+import { RootState } from '../interfaces/rootState.interfaces';
 import { eventSet, eventClearActiveNote } from '../store/actions/events.actions';
 import { AddNewFab } from '../components/ui/AddNewFab';
 import { DeleteEventFab } from '../components/ui/DeleteEventFab';

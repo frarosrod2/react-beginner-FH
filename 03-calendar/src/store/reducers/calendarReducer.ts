@@ -1,8 +1,8 @@
 import moment from 'moment';
-import { CalendarAction } from '../../Interfaces/actions.interfaces';
-import { Calendar } from '../../Interfaces/calendar.interfaces';
+import { CalendarAction } from '../../interfaces/actions.interfaces';
+import { Calendar } from '../../interfaces/calendar.interfaces';
 import { CalendarType } from '../../types/calendar.types';
-import { EventCal } from '../../Interfaces/event.interface';
+import { EventCal } from '../../interfaces/event.interfaces';
 
 const initialState: Calendar = {
   events: [

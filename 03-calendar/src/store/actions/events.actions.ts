@@ -1,4 +1,4 @@
-import { EventCal } from '../../Interfaces/event.interface';
+import { EventCal } from '../../interfaces/event.interfaces';
 import { CalendarType } from '../../types/calendar.types';
 
 export const eventAddNew = (event: EventCal) => ({

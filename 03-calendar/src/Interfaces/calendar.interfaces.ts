@@ -1,4 +1,4 @@
-import { EventCal } from './event.interface';
+import { EventCal } from './event.interfaces';
 export interface Calendar {
   events: EventCal[];
   activeEvent: any;

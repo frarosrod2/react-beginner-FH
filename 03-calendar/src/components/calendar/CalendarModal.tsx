@@ -8,13 +8,13 @@ import 'sweetalert2/dist/sweetalert2.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { modalUiClose } from '../../store/actions/modalUi.actions';
-import { RootState } from '../../Interfaces/rootState.interfaces';
+import { RootState } from '../../interfaces/rootState.interfaces';
 import {
   eventAddNew,
   eventClearActiveNote,
   eventUpdate,
 } from '../../store/actions/events.actions';
-import { EventCal } from '../../Interfaces/event.interface';
+import { EventCal } from '../../interfaces/event.interfaces';
 
 const customStyles = {
   content: {

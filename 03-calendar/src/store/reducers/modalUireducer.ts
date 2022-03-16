@@ -1,5 +1,5 @@
-import { ModalUiAction } from '../../Interfaces/actions.interfaces';
-import { ModalUi } from '../../Interfaces/modalUi.interfaces';
+import { ModalUiAction } from '../../interfaces/actions.interfaces';
+import { ModalUi } from '../../interfaces/modalUi.interfaces';
 import { ModalUiType } from '../../types/modal.types';
 
 const initialState: ModalUi = {
