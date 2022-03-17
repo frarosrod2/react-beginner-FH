@@ -1,24 +1,22 @@
-import moment from 'moment';
 import { CalendarAction } from '../../interfaces/actions.interfaces';
 import { Calendar } from '../../interfaces/calendar.interfaces';
-import { CalendarType } from '../../types/calendar.types';
 import { EventCal } from '../../interfaces/event.interfaces';
+import { CalendarType } from '../../types/calendar.types';
+
+// {
+//   id: new Date().getTime(),
+//   title: 'Cumple',
+//   start: moment().toDate(),
+//   end: moment().add(2, 'hours').toDate(),
+//   notes: [],
+//   user: {
+//     _id: '123',
+//     name: 'fernando',
+//   },
+// },
 
 const initialState: Calendar = {
-  events: [
-    {
-      id: new Date().getTime(),
-      title: 'Cumple',
-      start: moment().toDate(),
-      end: moment().add(2, 'hours').toDate(),
-      bgcolor: '#fafafa',
-      notes: [],
-      user: {
-        _id: '123',
-        name: 'fernando',
-      },
-    },
-  ],
+  events: [],
   activeEvent: null,
 };
 
@@ -50,6 +48,15 @@ export const calendarReducer = (state = initialState, action: CalendarAction) =>
           return event.id !== state?.activeEvent?.id;
         }),
         activeEvent: null,
+      };
+    case CalendarType.LOADED:
+      return {
+        ...state,
+        events: [...action.payload],
+      };
+    case CalendarType.LOGOUT:
+      return {
+        ...initialState,
       };
     default:
       return state;

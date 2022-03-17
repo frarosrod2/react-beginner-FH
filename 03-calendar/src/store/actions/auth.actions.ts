@@ -4,6 +4,7 @@ import 'sweetalert2/dist/sweetalert2.css';
 import { fetchSinToken, fetchConToken } from '../../helpers/fetch';
 import { User } from '../../interfaces/user.interface';
 import { AuthType } from '../../types/auth.types';
+import { eventLogout } from './events.actions';
 
 export const startLogin = (email: string, password: string) => {
   return async (dispatch: any) => {
@@ -11,7 +12,6 @@ export const startLogin = (email: string, password: string) => {
     const body = await resp.json();
     if (body.ok) {
       processBody(body);
-      console.log('body', body);
       dispatch(
         login({
           checking: false,
@@ -67,6 +67,7 @@ export const startLogout = () => {
   return (dispatch: any) => {
     localStorage.clear();
     dispatch(logout());
+    dispatch(eventLogout());
   };
 };
 

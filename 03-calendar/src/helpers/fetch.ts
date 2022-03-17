@@ -15,9 +15,10 @@ export const fetchSinToken = (endpoint: string, data: any, method = 'GET') => {
   }
 };
 
-export const fetchConToken = (endpoint: string, method = 'GET') => {
+export const fetchConToken = (endpoint: string, data = {}, method = 'GET') => {
   const url = `${baseUrl}/${endpoint}`;
   const token = localStorage.getItem('token') || '';
+
   if (method === 'GET') {
     return fetch(url, {
       method,
@@ -32,6 +33,7 @@ export const fetchConToken = (endpoint: string, method = 'GET') => {
         'Content-Type': 'application/json',
         'x-token': token,
       },
+      body: JSON.stringify(data),
     });
   }
 };

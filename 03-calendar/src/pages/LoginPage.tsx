@@ -3,13 +3,12 @@ import 'sweetalert2/dist/sweetalert2.css';
 import Swal from 'sweetalert2';
 
 import { useForm } from '../hooks/useForm';
-import {  UserRegister } from '../interfaces/user.interface';
+import { UserRegister } from '../interfaces/user.interface';
 import { startLogin, startRegister } from '../store/actions/auth.actions';
 import { useNavigate } from 'react-router-dom';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
-  let navigate = useNavigate();
 
   const [formRegisterValues, handleRegisterInputChange]: any = useForm({
     rName: 'Paco',
@@ -29,7 +28,6 @@ export const LoginPage = () => {
   const handleLogin = (e: any) => {
     e.preventDefault();
     dispatch(startLogin(lEmail, lPassword));
-    navigate('/');
   };
 
   const handleRegister = (e: any) => {
@@ -38,7 +36,6 @@ export const LoginPage = () => {
       return Swal.fire('Error', 'Las contraseñas no coinciden', 'error');
     }
     dispatch(startRegister(rEmail, rPassword1, rName));
-    navigate('/');
   };
 
   return (

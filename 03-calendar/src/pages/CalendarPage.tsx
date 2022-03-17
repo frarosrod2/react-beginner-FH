@@ -1,20 +1,24 @@
 import { Navbar } from '../components/ui/Navbar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/es';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { EventCal } from '../interfaces/event.interfaces';
 import { messages } from '../helpers/calendar-messages-es';
 import { CalendarEvent } from '../components/calendar/CalendarEvent';
 import { CalendarModal } from '../components/calendar/CalendarModal';
 import { modalUiOpen } from '../store/actions/modalUi.actions';
 import { RootState } from '../interfaces/rootState.interfaces';
-import { eventSet, eventClearActiveNote } from '../store/actions/events.actions';
+import {
+  eventSet,
+  eventClearActiveNote,
+  eventStartLoading,
+} from '../store/actions/events.actions';
 import { AddNewFab } from '../components/ui/AddNewFab';
 import { DeleteEventFab } from '../components/ui/DeleteEventFab';
+import { EventCal } from '../interfaces/event.interfaces';
 
 const localizer = momentLocalizer(moment);
 moment.locale('es');
@@ -22,10 +26,15 @@ moment.locale('es');
 export const CalendarPage = () => {
   const dispatch = useDispatch();
   const { events, activeEvent } = useSelector((state: RootState) => state.calendar);
+  const { uid } = useSelector((state: RootState) => state.auth);
 
   const [lastView, setLastView]: any = useState(
     localStorage.getItem('lastView') || 'month'
   );
+
+  useEffect(() => {
+    dispatch(eventStartLoading());
+  }, [dispatch]);
 
   const onDoubleClick = (e: any) => {
     dispatch(modalUiOpen());
@@ -51,14 +60,14 @@ export const CalendarPage = () => {
     isSelected: boolean
   ) => {
     const style: any = {
-      backgroundColor: '#367CF7',
+      backgroundColor: uid === event.user._id ? 'red' : '#465660',
       color: 'white',
       display: 'block',
       opacity: 0.8,
       borderRadius: '0px',
     };
 
-    return style;
+    return { style };
   };
 
   return (
