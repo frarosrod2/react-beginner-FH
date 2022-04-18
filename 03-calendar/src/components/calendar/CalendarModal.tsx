@@ -8,7 +8,6 @@ import 'sweetalert2/dist/sweetalert2.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { modalUiClose } from '../../store/actions/modalUi.actions';
-import { RootState } from '../../interfaces/rootState.interfaces';
 import {
   eventClearActiveNote,
   eventStartAddNew,
@@ -16,6 +15,7 @@ import {
 } from '../../store/actions/events.actions';
 import { EventCal } from '../../interfaces/event.interfaces';
 import { eventStartUpdate } from '../../store/actions/events.actions';
+import { RootState } from '../../store/store';
 
 const customStyles = {
   content: {
@@ -108,11 +108,7 @@ export const CalendarModal = () => {
     if (activeEvent) {
       dispatch(eventStartUpdate(formValues));
     } else {
-      dispatch(
-        eventStartAddNew(
-          formValues
-        )
-      );
+      dispatch(eventStartAddNew(formValues));
     }
     setTitleValid(true);
     closeModal();

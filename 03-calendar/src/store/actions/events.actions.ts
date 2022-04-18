@@ -3,9 +3,9 @@ import 'sweetalert2/dist/sweetalert2.css';
 
 import { CalendarType } from '../../types/calendar.types';
 import { fetchConToken } from '../../helpers/fetch';
-import { RootState } from '../../interfaces/rootState.interfaces';
 import { prepareEvents } from '../../helpers/prepareEvents';
 import { EventCal } from '../../interfaces/event.interfaces';
+import { RootState } from '../store';
 
 //** Acciones Redux Thunk
 export const eventStartAddNew = (event: EventCal) => {

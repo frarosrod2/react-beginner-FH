@@ -1,4 +1,4 @@
-import { CalendarAction } from '../../interfaces/actions.interfaces';
+import { Action } from '../../interfaces/actions.interfaces';
 import { Calendar } from '../../interfaces/calendar.interfaces';
 import { EventCal } from '../../interfaces/event.interfaces';
 import { CalendarType } from '../../types/calendar.types';
@@ -20,7 +20,10 @@ const initialState: Calendar = {
   activeEvent: null,
 };
 
-export const calendarReducer = (state = initialState, action: CalendarAction) => {
+export const calendarReducer = (
+  state = initialState,
+  action: Action<CalendarType, any>
+) => {
   switch (action.type) {
     case CalendarType.ADD_NEW:
       return {

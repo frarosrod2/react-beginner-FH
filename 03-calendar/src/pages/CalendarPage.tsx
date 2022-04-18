@@ -10,7 +10,6 @@ import { messages } from '../helpers/calendar-messages-es';
 import { CalendarEvent } from '../components/calendar/CalendarEvent';
 import { CalendarModal } from '../components/calendar/CalendarModal';
 import { modalUiOpen } from '../store/actions/modalUi.actions';
-import { RootState } from '../interfaces/rootState.interfaces';
 import {
   eventSet,
   eventClearActiveNote,
@@ -19,6 +18,7 @@ import {
 import { AddNewFab } from '../components/ui/AddNewFab';
 import { DeleteEventFab } from '../components/ui/DeleteEventFab';
 import { EventCal } from '../interfaces/event.interfaces';
+import { RootState } from '../store/store';
 
 const localizer = momentLocalizer(moment);
 moment.locale('es');

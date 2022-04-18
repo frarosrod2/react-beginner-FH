@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../interfaces/rootState.interfaces';
+import { RootState } from '../../store/store';
 import { startLogout } from '../../store/actions/auth.actions';
 
 export const Navbar = () => {
