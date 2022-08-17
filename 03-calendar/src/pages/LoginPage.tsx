@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [formRegisterValues, handleRegisterInputChange]: any = useForm({
     rName: 'Paco',
@@ -28,6 +29,7 @@ export const LoginPage = () => {
   const handleLogin = (e: any) => {
     e.preventDefault();
     dispatch(startLogin(lEmail, lPassword));
+    navigate('/', { replace: true });
   };
 
   const handleRegister = (e: any) => {
